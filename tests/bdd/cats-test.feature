@@ -1,7 +1,10 @@
 Feature: integration test
 
 Background:
-    * url 'http://localhost:8080/cats'
+    * def serverConfig = read('mocks/start-mock.js')
+    * def catsServerMock = serverConfig('cats-mock')
+    * url 'http://localhost:' + catsServerMock.port + '/cats'
+    * def afterScenario = function(){ catsServerMock.stop() }
 
 Scenario: create cat
     Given request { name: 'Billie' }
@@ -32,4 +35,8 @@ Scenario: create cat
 
     When method get
     Then status 200
-And match response contains [{ id: '#uuid', name: 'Billie' },{ id: '#(id)', name: 'Bob' }]
+    And match response contains [{ id: '#uuid', name: 'Billie' },{ id: '#(id)', name: 'Bob' }]
+
+    Given url 'http://localhost:' + catsServerMock.port + '/__admin/stop'
+    When method get
+    Then status 200
