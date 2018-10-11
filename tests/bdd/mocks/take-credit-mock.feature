@@ -23,7 +23,7 @@ function(request, id){
   if (!(typeof request["duration"] === 'number') ||request["duration"]<6 || request["duration"]>100){
     return{"code":400, "message":"Invalid duration"};
   }
-  if (!(typeof request["percent"] === 'number') ||request["perceent"]<2 || request["percent"]>100){
+  if (!(typeof request["percent"] === 'number') ||request["percent"]<2 || request["percent"]>100){
     return{"code":400, "message":"Invalid percent"};
   }
   return {"id":id}
