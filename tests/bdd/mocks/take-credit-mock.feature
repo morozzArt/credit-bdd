@@ -5,18 +5,9 @@ Background:
 * configure cors = true
 * def id = 0
 * def credits = {}
-* def str2int =
-"""
-function(arg) {
-  return parseInt(arg);
-}
-"""
-* def incr =
-"""
-function(arg) {
-  return arg + 1;
-}
-"""
+* def str2int = function(arg) {return parseInt(arg);}
+* def incr = function(arg) { return arg + 1;}
+
 
 Scenario: pathMatches('/credit') && methodIs('post')
     * def credit = request
