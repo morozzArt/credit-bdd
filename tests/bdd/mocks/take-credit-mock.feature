@@ -12,6 +12,8 @@ function(request, id){
   keys = ["person", "credit", "agreementAt","currency","duration","percent"];
   for (var i = 0, len = keys.length; i < len; i++){
     var key = keys[i]
+    console.log(key)
+    console.log(key in request)
     if (!(key in request)){
       return{"code":400, "message":"Parametr missed"};
     }
