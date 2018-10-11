@@ -10,8 +10,8 @@ Background:
 """
 function(request, id){
   keys = ["person", "credit", "agreementAt","currency","duration","percent"]
-  for (var item in keys){
-    var key = keys[item]
+  for (var i = 0, len = keys.length; i < len; i++){
+    var key = keys[i]
     if (!(key in request)){
       return{"code":400, "message":"Parametr missed"}
     }
