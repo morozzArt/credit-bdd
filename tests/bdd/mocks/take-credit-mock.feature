@@ -16,12 +16,6 @@ Scenario: pathMatches('/credit') && methodIs('post')
     * eval credits[id] = credit
     * def response = {id: '#(id)'}
 
-Scenario: pathMatches('/credit')
-    * def response = credits
-
-Scenario: pathMatches('/credit/{id}/')
-    * def response = credits[str2int(pathParams.id)]
-
 Scenario:
     # catch-all
     * def responseStatus = 404
