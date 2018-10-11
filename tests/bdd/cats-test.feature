@@ -5,6 +5,7 @@ Background:
     * def catsServerMock = serverConfig('cats-mock')
     * url 'http://localhost:' + catsServerMock.port + '/cats'
     * def afterScenario = function(){ catsServerMock.stop() }
+    * configure headers = { 'Content-Type': 'application/json' }
 
 Scenario: create cat
     Given request { name: 'Billie' }
