@@ -11,10 +11,12 @@ Background:
 """
 function(request, id){
   keys = ["person", "credit", "agreementAt","currency","duration","percent"]
-  keys.forEach(function(key) {
-    if (!(key in request))
+  for (var item in keys){
+    var key = keys[item]
+    if (!(key in request)){
       return{"code":400, "message":"Parametr missed"}
-  });
+    }
+  }
   if (!(typeof request["credit"] === 'number') || request["credit"]<1000){
     return{"code":400, "message":"Inalid value of credit"}
   }
@@ -34,6 +36,15 @@ function(request, id){
   return {"id":id}
 }
 """
+* def get_code =
+"""
+function(resp){
+if ("code" in resp){
+    return resp["code"]
+}
+return 200
+}
+"""
 
 
 Scenario: pathMatches('/credit') && methodIs('post')
@@ -42,6 +53,7 @@ Scenario: pathMatches('/credit') && methodIs('post')
     * eval credit.id = id
     * eval credits[id] = credit
     * def response = answer_gen(request,id)
+    * def responseStatus = get_code(response)
 
 Scenario:
     # catch-all
