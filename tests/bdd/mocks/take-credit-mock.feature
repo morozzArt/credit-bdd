@@ -9,11 +9,11 @@ Background:
 * def answer_gen =
 """
 function(request, id){
-  keys = ["person", "credit", "agreementAt","currency","duration","percent"]
+  keys = ["person", "credit", "agreementAt","currency","duration","percent"];
   for (var i = 0, len = keys.length; i < len; i++){
     var key = keys[i]
     if (!(key in request)){
-      return{"code":400, "message":"Parametr missed"}
+      return{"code":400, "message":"Parametr missed"};
     }
   }
   if (!(typeof request["credit"] === 'number') || request["credit"]<1000){
@@ -21,16 +21,16 @@ function(request, id){
   }
   if (!(typeof request["agreementAt"] === 'string') ||!(request["agreementAt"].
   match(/^\s*((?:19|20)\d{2})\-(1[012]|0?[1-9])\-(3[01]|[12][0-9]|0?[1-9])\s*$/))){
-    return{"code":400, "message":"Invalid date format"}
+    return{"code":400, "message":"Invalid date format"};
   }
   if(!(typeof request["currency"] === 'string')){
-    return{"code":400, "message":"Invalid currency"}
+    return{"code":400, "message":"Invalid currency"};
   }
   if (!(typeof request["duration"] === 'number') ||request["duration"]<6 || request["duration"]>100){
-    return{"code":400, "message":"Invalid duration"}
+    return{"code":400, "message":"Invalid duration"};
   }
   if (!(typeof request["percent"] === 'number') ||request["perceent"]<2 || request["percent"]>100){
-    return{"code":400, "message":"Invalid percent"}
+    return{"code":400, "message":"Invalid percent"};
   }
   return {"id":id}
 }
@@ -39,7 +39,7 @@ function(request, id){
 """
 function(resp){
 if ("code" in resp){
-    return resp["code"]
+    return resp["code"];
 }
 return 200
 }
