@@ -5,7 +5,6 @@ Background:
 * configure cors = true
 * def id = 0
 * def credits = {}
-* def strToInt = function(arg) {return parseInt(arg);}
 * def incr = function(arg) { return arg + 1;}
 * def answer_gen =
 """
@@ -54,6 +53,10 @@ Scenario: pathMatches('/credit') && methodIs('post')
     * def responseStatus = get_code(response)
     * eval cred.id = id
     * eval credits[id] = cred
+
+
+Scenario: pathMatches('/credit')
+    * def response = credits
 
 Scenario:
     # catch-all
