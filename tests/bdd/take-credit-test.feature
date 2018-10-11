@@ -23,7 +23,7 @@ Scenario: create credit negative
     Then status 400
     And match response == {"code":400,"message":"Parametr missed"}
 
-    Given request {"person":{"firstName":"Alexandra","lastName":"Chernyshova"},"credit":0,"agreementAt":"2018-10-08","currency":"USD","duration":60,"percent":10}
+    Given request {"person":{"firstName":"Alexandra","lastName":"Chernyshova"},"credit":10,"agreementAt":"2018-10-08","currency":"USD","duration":60,"percent":10}
     When method post
     Then status 400
     And match response == {"code":400, "message":"Inalid value of credit"}
