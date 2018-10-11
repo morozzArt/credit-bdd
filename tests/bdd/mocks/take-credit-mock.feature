@@ -5,7 +5,7 @@ Background:
 * configure cors = true
 * def id = 0
 * def credits = {}
-* def str2int = function(arg) {return parseInt(arg);}
+* def strToInt = function(arg) {return parseInt(arg);}
 * def incr = function(arg) { return arg + 1;}
 * def answer_gen =
 """
@@ -48,12 +48,12 @@ return 200
 
 
 Scenario: pathMatches('/credit') && methodIs('post')
-    * def credit = request
+    * def cred = request
     * eval id = incr(id)
-    * eval credit.id = id
-    * eval credits[id] = credit
     * def response = answer_gen(request,id)
     * def responseStatus = get_code(response)
+    * eval cred.id = id
+    * eval credits[id] = cred
 
 Scenario:
     # catch-all
