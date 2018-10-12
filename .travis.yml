@@ -1,4 +1,6 @@
-language: java
+language:
+- java
+- javascript
 jdk:
 - openjdk8
 install:
