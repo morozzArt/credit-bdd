@@ -1,25 +1,26 @@
 Feature: stateful mock server
 
-Background:
+  Background:
     * configure cors = true
     * configure responseHeaders = { 'Content-Type': 'application/json; charset=utf-8' }
     * def uuid = function(){ return java.util.UUID.randomUUID() + '' }
     * def cats = {}
+    * def requestMatch = read('requestMatch.js')
 
-Scenario: pathMatches('/cats') && methodIs('post') && typeContains('json')
+  Scenario: pathMatches('/cats') && methodIs('post') && typeContains('json') && requestMatch({ name: '#string' })
     * def cat = request
     * def id = uuid()
     * set cat.id = id
     * eval cats[id] = cat
     * def response = cat
 
-Scenario: pathMatches('/cats') && methodIs('get') && typeContains('json')
+  Scenario: pathMatches('/cats') && methodIs('get') && typeContains('json')
     * def response = $cats.*
 
-Scenario: pathMatches('/cats/{id}') && methodIs('get') && typeContains('json')
+  Scenario: pathMatches('/cats/{id}') && methodIs('get') && typeContains('json')
     * def response = cats[pathParams.id]
 
-Scenario:
+  Scenario:
     # catch-all
     * def responseStatus = 404
     * def response = { code: 1, message: 'Not Found' }
