@@ -8,15 +8,12 @@ Background:
     * def credits = {}
     * def incr = function(arg) { return arg + 1;}
 
-
-
 Scenario: pathMatches('/credit') && methodIs('post') && typeContains('json')
     * def cred = request
     * eval id = incr(id)
     * eval cred.id = id
     * eval credits[id] = cred
     * def response = {id:'#(id)'}
-
 
 Scenario: pathMatches('/credit') && methodIs('get') && typeContains('json')
     * def response = credits
