@@ -11,12 +11,11 @@ Background:
 
 
 Scenario: pathMatches('/credit') && methodIs('post') && typeContains('json')
-    * def cre d = request
+    * def cred = request
     * eval id = incr(id)
-    * def response = answer_gen(request,id)
-    * def responseStatus = get_code(response)
     * eval cred.id = id
     * eval credits[id] = cred
+    * def response = {id:'#(id)'}
 
 
 Scenario: pathMatches('/credit') && methodIs('get') && typeContains('json')
