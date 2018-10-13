@@ -12,9 +12,3 @@ Feature: integration test
     When method post
     Then status 200
     And match response == { id:'#number' }
-
-    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
-    When method get
-    Then status 200
-
-

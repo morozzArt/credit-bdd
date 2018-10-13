@@ -12,10 +12,6 @@ Feature: integration test
     When method post
     Then status 200
 
-    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
-    When method get
-    Then status 200
-
     Examples:
       | request                                                   | name   |
       | { name: 'Billie' }                                        | Billie |
@@ -26,10 +22,6 @@ Feature: integration test
     Given request <request>
     When method post
     Then status 404
-
-    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
-    When method get
-    Then status 200
 
     Examples:
       | request        |
@@ -68,8 +60,3 @@ Feature: integration test
     When method get
     Then status 200
     And match response contains [{ id: '#uuid', name: 'Billie' },{ id: '#(id)', name: 'Bob' }]
-
-    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
-    When method get
-    Then status 200
-
