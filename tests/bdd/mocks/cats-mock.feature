@@ -5,7 +5,7 @@ Feature: stateful mock server
     * configure responseHeaders = { 'Content-Type': 'application/json; charset=utf-8' }
     * def uuid = function(){ return java.util.UUID.randomUUID() + '' }
     * def cats = {}
-    * def requestMatch = read('requestMatch.js')
+    * def requestMatch = read('request-match.js')
 
   Scenario: pathMatches('/cats') && methodIs('post') && typeContains('json') && requestMatch({ name: '#string' })
     * def cat = request

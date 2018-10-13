@@ -2,9 +2,9 @@ Feature: integration test
 
   Background:
     * def serverConfig = read('mocks/start-mock.js')
-    * def catsServerMock = serverConfig('cats-mock')
-    * url 'http://localhost:' + catsServerMock.port + '/cats'
-    * def afterScenario = function(){ catsServerMock.stop() }
+    * def serverMock = serverConfig('cats-mock')
+    * url 'http://localhost:' + serverMock.port + '/cats'
+    * configure afterScenario = read('mocks/stop-mock.js')
     * configure headers = { 'Content-Type': 'application/json' }
 
   Scenario Outline: create cat with garbage allowed
@@ -12,7 +12,7 @@ Feature: integration test
     When method post
     Then status 200
 
-    Given url 'http://localhost:' + catsServerMock.port + '/__admin/stop'
+    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
     When method get
     Then status 200
 
@@ -27,7 +27,7 @@ Feature: integration test
     When method post
     Then status 404
 
-    Given url 'http://localhost:' + catsServerMock.port + '/__admin/stop'
+    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
     When method get
     Then status 200
 
@@ -69,7 +69,7 @@ Feature: integration test
     Then status 200
     And match response contains [{ id: '#uuid', name: 'Billie' },{ id: '#(id)', name: 'Bob' }]
 
-    Given url 'http://localhost:' + catsServerMock.port + '/__admin/stop'
+    Given url 'http://localhost:' + serverMock.port + '/__admin/stop'
     When method get
     Then status 200
 
